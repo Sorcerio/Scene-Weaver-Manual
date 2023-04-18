@@ -49,7 +49,7 @@ The operation outputted two videos at `(1920, 1080)` and `(1080, 1920)`.
 In this configuration, the complete render of all images and the two output videos took around 11 hours.
 This time will vary _greatly_ depending on the hardware you have access to.
 
-On the other end of the spectrum, the [Simple Example](examples\SimpleExample) included in this repo can be rendered with the same parameters in under 12 minutes.
+On the other end of the spectrum, the [Simple Example](./examples/SimpleExample) included in this repo can be rendered with the same parameters in under 12 minutes.
 
 ## Why is There No Code?
 

@@ -1,0 +1,36 @@
+# Title: The Cat's Meow
+
+---
+# [Tutorial] This is a Scene with 1 Scene Segment.
+Zoom in on Cat:
+    text: A cat perched on a chair.
+    parameters:
+        prompt: dslr photograph of an extreme close up view of a tuxedo cat's face in a nice kitchen, realistic
+        duration: 5
+        camera:
+            name: "zoom"
+            z: -10
+            x: 0
+            y: 0
+            roll: 0
+            pitch: 0
+            yaw: 0
+
+---
+# [Tutorial] This is a 2nd Scene that also has 1 Scene Segment.
+# [Tutorial] Scenes can have as many Scene Segments as desired.
+Zoom in on Computer:
+    text: Surfing the internet for warmth.
+    parameters:
+        prompt: dslr photograph of a wide view of a laptop on a wooden table in a nice kitchen, realistic
+        duration: 5
+        camera: zoom
+        initialWeight: 1.0
+
+--- # [Tutorial] These `---` characters indicate seperation of Scenes.
+Cat is on top of the Computer:
+    text: In the winter chill.
+    parameters:
+        prompt: dslr photograph of a wide view of a tuxedo cat sitting on laptop on a wooden table in a nice kitchen, realistic
+        duration: 7
+        initialWeight: 0.5

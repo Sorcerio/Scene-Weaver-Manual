@@ -1,0 +1,33 @@
+{
+    "_v": "1.0.0",
+    "script": "./script.spt",
+    "seed": 1228194017,
+    "framerate": 30,
+    "width": 768,
+    "height": 512,
+    "initialImage": null,
+    "defaults": {
+        "initialWeight": 0.75,
+        "frameWeight": 0.5,
+        "promptPrefix": "photograph of",
+        "promptPostfix": ", realistic, dslr"
+    },
+    "videos": {
+        "widescreen": {
+            "cornerImages": {
+                "bottomRight": ".\\resources\\mbm_website_qr.png",
+                "inset": 24
+            },
+            "subtitles": {
+                "position": "subtitle"
+            }
+        },
+        "vertical": {
+            "width": 1080,
+            "height": 1920,
+            "subtitles": {
+                "position": "subtitle"
+            }
+        }
+    }
+}

@@ -1,1 +1,4 @@
+test*.*
 docs/legacy
+examples/SimpleExample/outputs/
+examples/SimpleExample/outputs_deploy/
