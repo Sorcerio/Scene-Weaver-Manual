@@ -14,6 +14,7 @@ _And this is the User Manual._
     - [What is the Output?](#what-is-the-output)
       - [An Example Output](#an-example-output)
   - [Why is There No Code?](#why-is-there-no-code)
+  - [Can I Create Something with Scene Weaver?](#can-i-create-something-with-scene-weaver)
   - [User Manuals](#user-manuals)
   - [Supporting the Project](#supporting-the-project)
 
@@ -53,7 +54,27 @@ On the other end of the spectrum, the [Simple Example](./examples/SimpleExample)
 
 ## Why is There No Code?
 
-TODO: Write this section
+The short answer is that at this time there is no existing software license available that will provide the protection and expressiveness desired for this repository.
+
+The intention, at the time of writing, is to release Scene Weaver in a semi-open format once an adequate software license is created and vetted.
+In particular, the intention of this license will be to open the use of Scene Weaver up to artists and creators so that they can craft their own amazing works.
+I want to leave full commercialization of the videos created with Scene Weaver in the hands of the end user (as limited by whatever license is present for the generative image solution that was used).
+
+However, it is also desired to deny commercialization of the Scene Weaver _code_ for products like Software as a Service (SaaS) business models and extortionist mobile applications that feed off ignorance about the real inner workings of machine learning models ("ai").
+The reasoning behind this is because of the technology in use by Scene Weaver.
+Scene Weaver is a program that requires a large amount of compute and time to create an output as we are limited by the technology of our time.
+As such, there are limited options for consumer hardware that can run the image generation models associated with Scene Weaver.
+This means that large, already solidified businesses have a huge advantage over any competitors in this field.
+An advantage that comes from the simple fact that they possess a larger pocket and have the ability to purchase or operate much larger amounts of compute than any average consumer.
+And this presents the problem, that with current technology, creating a service for Scene Weaver would require a heavy amount of available computational power on standby.
+
+I have plans for this project as an artistic tool but open source has a history of being subverted by those with more funding.
+For the time being, only the documentation will be released while a good solution to this issue is worked on with [Illegal Astronauts](https://illegalastronauts.com).
+
+## Can I Create Something with Scene Weaver?
+
+While the licensing issues for the code base are being handled, commisions will be considered on a case by case basis.
+Review the [User Manuals](#user-manuals) below and feel free to contact me through [Instagram](https://www.instagram.com/mbmcloude/) or [Twitter](https://twitter.com/mbmcloude) to discuss.
 
 ## User Manuals
 * [Project Structure Reference](./docs/ProjectStructureReference.md): Reference documentation on the `parameters.json` and `script.spt` files that compose a Scene Weaver project.
