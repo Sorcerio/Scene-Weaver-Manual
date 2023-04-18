@@ -2,9 +2,7 @@
 
 ![Scene Weaver Demo Gif](./repo/bannerVideo_short_small.gif)
 
-_Scene Weaver is a toolkit that allows you to turn non-visual works into dynamic visual accompanyment using generative artwork._
-
-_And this is the User Manual._
+_The User Manual for Scene Weaver. A toolkit that allows you to turn non-visual works into dynamic visual accompanyment using generative artwork._
 
 ---
 
