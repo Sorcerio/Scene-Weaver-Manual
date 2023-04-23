@@ -2,7 +2,7 @@
 
 ![Scene Weaver Demo Gif](./repo/bannerVideo_short_small.gif)
 
-_The User Manual for Scene Weaver. A toolkit that allows you to turn non-visual works into dynamic visual accompanyment using generative artwork._
+_The User Manual for Scene Weaver. A toolkit that allows you to turn non-visual works into dynamic visual accompaniment using generative artwork._
 
 ---
 
@@ -20,7 +20,7 @@ _The User Manual for Scene Weaver. A toolkit that allows you to turn non-visual 
 
 ## What is Scene Weaver?
 
-Scene Weaver is a toolkit that allows you to turn non-visual works into dynamic visual accompanyment using (primarily) generative artwork.
+Scene Weaver is a toolkit that allows you to turn non-visual works into dynamic visual accompaniment using (primarily) generative artwork.
 
 Beginning with something as simple as a [Scene Weaver Script file](./docs/ProjectStructureReference.md#script-spt-file-format) and a [Project Parameters file](./docs/ProjectStructureReference.md#parameters-file-reference), you can create a full video complete with optional subtitles and [frame-based camera movements](./docs/UsingCameras.md).
 To do this, Scene Weaver runs on top of an [Image Generator](./docs/UsingImageGenerators.md) like the [AUTOMATIC1111/stable-diffusion-webui Web API](https://github.com/AUTOMATIC1111/stable-diffusion-webui).
