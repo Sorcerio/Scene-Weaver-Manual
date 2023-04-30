@@ -236,6 +236,7 @@ An Example Scene Segment:
     text: A cat perched on a chair.
     parameters:
         prompt: dslr photograph of an extreme close up view of a tuxedo cat's face in a nice kitchen, realistic
+        negativePrompt: deformed, bad picture, blurry
         duration: 5
         camera:
             name: "zoomIn"
@@ -247,12 +248,15 @@ An Example Scene Segment:
             yaw: 0
         initialWeight: 0.75
         frameWeight: 0.5
+        latentSteps: 25
+        cfg: 7.0
         usingImage: null
 ```
 * `primaryKey`: The Primary Key (here "An Example Scene Segment") is a _required_ name for the Scene Segment both for organization and future identification within the code.
     * `text`: A _required_ string expressing the text associated with this Scene Segment.
     * `parameters`: A dictionary of parameters defining how the Scene Segment will be rendered.
         * `prompt`: A string specifying a custom prompt for this particular Scene Segment.
+        * `negativePrompt`: A string specifying a prompt of tokens to move away from for generation of this particular Scene Segment.
         * `duration`: An int specifying the amount of time in seconds this Scene Segment should remain on screen.
         * `camera`: This value can either be a string like `basicForwardZoom` to reference a Python Defined Camera in the `.../SceneWeaver/cameras` directory **or** a dictionary defining a Script Defined Camera with the following key-value pairs.
             * `name`: A string specifying the name of the camera.
@@ -268,6 +272,8 @@ An Example Scene Segment:
                 * A negative value will visually turn the frame to the left while a positive value will visually turn the frame to the right.
         * `initialWeight`: A Scene Segment specific override of the Parameter File's initial Image2Image weight that is used for generation of the first image in a Scene Segment.
         * `frameWeight`: A Scene Segment specific override of the Parameter File's frame Image2Image weight to use for each image in a Scene Segment after the initial frame.
-        * `usingImage`: An string absolute or relative path (preferred when loading from a project directory) to an image to use as an explicit initial image in generation of the Scene Segment's first image.
+        * `latentSteps`: An int specifying the number steps to use when enhancing the latent image before finalization. Higher values take longer but lower values can product bad results.
+        * `cfg`: A float specifying how strongly generated iamges should conform to the prompt. Lower values can product more "creative" results. Classifier Free Guidance Scale.
+        * `usingImage`: A string absolute or relative path (preferred when loading from a project directory) to an image to use as an explicit initial image in generation of the Scene Segment's first image.
             * Specifying `usingImage` will override any image passed to this Scene Segment from the previous Scene Segment.
             * When generating using the provided image, the `initialWeight` _will be respected_ during generation of the first frame of the Scene Segment as usual.
