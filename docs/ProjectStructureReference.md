@@ -251,29 +251,48 @@ An Example Scene Segment:
         latentSteps: 25
         cfg: 7.0
         usingImage: null
+        colorCorrection: init
 ```
 * `primaryKey`: The Primary Key (here "An Example Scene Segment") is a _required_ name for the Scene Segment both for organization and future identification within the code.
     * `text`: A _required_ string expressing the text associated with this Scene Segment.
-    * `parameters`: A dictionary of parameters defining how the Scene Segment will be rendered.
+    * `parameters`: An _optional_ dictionary of parameters defining how the Scene Segment will be rendered. All keys under `parameters` are also optional.
         * `prompt`: A string specifying a custom prompt for this particular Scene Segment.
         * `negativePrompt`: A string specifying a prompt of tokens to move away from for generation of this particular Scene Segment.
         * `duration`: An int specifying the amount of time in seconds this Scene Segment should remain on screen.
-        * `camera`: This value can either be a string like `basicForwardZoom` to reference a Python Defined Camera in the `.../SceneWeaver/cameras` directory **or** a dictionary defining a Script Defined Camera with the following key-value pairs.
-            * `name`: A string specifying the name of the camera.
-                * This can be used later within the Script File in other Scene Segmenets by name without redefining the details.
-            * `z`: An int specifying the amount of Z-Axis movement _in pixels_ to be applied between each frame of the Scene Segment.
-                * A negative value will zoom into the frame while a positive value will zoom out of the frame.
-            * `x`: An int specifying the amount of X-Axis movement _in pixels_ to be applied between each frame of the Scene Segment.
-            * `y`: An int specifying the amount of Y-Axis movement _in pixels_ to be applied between each frame of the Scene Segment.
-            * `roll`: A float specifying the amount of Roll _in degrees_ to be applied to each frame of the Scene Segment.
-            * `pitch`: An int specifying the amount of Pitch _in pixels_ to be applied to each frame of the Scene Segment.
-                * A negative value will visually bank the frame up while a positive value will visually bank the frame down.
-            * `yaw`: An int specifying the amount of Yaw _in pixels_ to be applied to each frame of the Scene Segment.
-                * A negative value will visually turn the frame to the left while a positive value will visually turn the frame to the right.
+        * `camera`: _This key can accept multiple values types._
+            1. A string like `basicForwardZoom` to reference a Python Defined Camera in the `.../SceneWeaver/cameras` directory.
+            2. A dictionary defining a Script Defined Camera with the following key-value pairs.
+                * `name`: A string specifying the name of the camera.
+                    * This can be used later within the Script File in other Scene Segmenets by name without redefining the details.
+                * `z`: An int specifying the amount of Z-Axis movement _in pixels_ to be applied between each frame of the Scene Segment.
+                    * A negative value will zoom into the frame while a positive value will zoom out of the frame.
+                * `x`: An int specifying the amount of X-Axis movement _in pixels_ to be applied between each frame of the Scene Segment.
+                * `y`: An int specifying the amount of Y-Axis movement _in pixels_ to be applied between each frame of the Scene Segment.
+                * `roll`: A float specifying the amount of Roll _in degrees_ to be applied to each frame of the Scene Segment.
+                * `pitch`: An int specifying the amount of Pitch _in pixels_ to be applied to each frame of the Scene Segment.
+                    * A negative value will visually bank the frame up while a positive value will visually bank the frame down.
+                * `yaw`: An int specifying the amount of Yaw _in pixels_ to be applied to each frame of the Scene Segment.
+                    * A negative value will visually turn the frame to the left while a positive value will visually turn the frame to the right.
         * `initialWeight`: A Scene Segment specific override of the Parameter File's initial Image2Image weight that is used for generation of the first image in a Scene Segment.
         * `frameWeight`: A Scene Segment specific override of the Parameter File's frame Image2Image weight to use for each image in a Scene Segment after the initial frame.
         * `latentSteps`: An int specifying the number steps to use when enhancing the latent image before finalization. Higher values take longer but lower values can product bad results.
         * `cfg`: A float specifying how strongly generated iamges should conform to the prompt. Lower values can product more "creative" results. Classifier Free Guidance Scale.
-        * `usingImage`: A string absolute or relative path (preferred when loading from a project directory) to an image to use as an explicit initial image in generation of the Scene Segment's first image.
-            * Specifying `usingImage` will override any image passed to this Scene Segment from the previous Scene Segment.
-            * When generating using the provided image, the `initialWeight` _will be respected_ during generation of the first frame of the Scene Segment as usual.
+        * `usingImage`: _This key can accept multiple values types._
+            1. A string absolute or relative filepath to an image to use as an explicit initial image in generation of the Scene Segment's first image.
+                * A relative filepath is preferred when working with a Scene Weaver project to keep it transportable.
+                * This functionality is retained for Legacy scripts.
+            2. A dictionary defining the image and its use conditions with the following key-value pairs.
+                * `path`: A string absolute or relative filepath to an image to use as an explicit initial image in generation of the Scene Segment's first image.
+                    * A relative filepath is preferred when working with a Scene Weaver project to keep it transportable.
+                * `method`: A valid string key to indicate the method that should be used when introducing the image provided by `path`.
+                    * Valid keys are:
+                        * `replace`: The `usingImage` image entirely replaces the passed last image from the previous Scene Segment or the initial image if the parameter is included in the first Scene Segment. In most cases, creates a hard cut between the previous Scene Segment and the current.
+                        * `overlay`: The `usingImage` image is overlayed over the passed last image from the previous Scene Segment or the initial image if the parameter is included in the first Scene Segment. This is best used with a `usingImage` image that contains transparency. When used with a `usingImage` image that has been reduced to 50% transparency or more, a blended cut can be achieved.
+        * `colorCorrection`: A valid string key or path to indicate how Color Correction should be applied to this Scene Segment.
+            * If the `-ncc` command line argument is provided or `SceneWeaverImageGen.generateFrames(...)` is provided with `false` for the `colorCorrection` parameter, then all Scene Segments will act as if the `none` key was provided.
+            * Valid values are:
+                * `init`: Color correction is based on the Initial Image as defined in the [Parameters File](#the-parameters-file). This will create a consistent color grading throughout. This is the default.
+                * `segment`: Color correction is based on the first image for this specific Scene Segment as supplied by the previous Scene Segment or the Initial Image if this is the first Scene Segment. This will create more unique color grading.
+                    * If `usingImage` is also provided, the color correction data is generated _before_ the `usingImage` is `method` is applied.
+                * `none`: Color correction will be disabled for this Scene Segment. This can result in the red-blue shift phenomenon as documented on [Reddit](https://www.reddit.com/r/StableDiffusion/comments/xo28f3/if_you_run_image_to_image_on_each_subsequent/).
+                * A valid absolute or relative filepath to an image to use as the color correction reference for this Scene Segment like `./colorCorrection/000001_cc.png`.
