@@ -63,6 +63,7 @@ The complete project this file is associated with can be found in the `examples/
         "frameWeight": 0.5,
         "promptPrefix": "a blueprint of ",
         "promptPostfix": ", realistic, design documentation, hirez",
+        "negativePrompt": "poorly drawn, bad formatting, watermark, signature, logo",
         "readtimeWeight": 3.0
     },
     "videos": {
@@ -124,6 +125,7 @@ The complete project this file is associated with can be found in the `examples/
     * `frameWeight`: A float specifying the Image2Image weight to use for each image in a Scene Segment after the initial frame.
     * `promptPrefix`: A string prefix to add to the beginning of the `text` of any Scene Segments that do not have an explicit prompt.
     * `promptPostfix`: A string postfix to add to the beginning of the `text` of any Scene Segments that do not have an explicit prompt.
+    * `negativePrompt`: A string specifying tokens to move away from during generation that is provided to all Scene Segments that do not provider their own `parameters:negativePrompt`.
     * `readtimeWeight`: A float specifying the weight to use when calculating the read time for any given line. Higher positive values will produce a higher calculated read time.
 * `videos`: A dictionary of desired output video configurations.
     * `widescreen`/`vertical`/_etc_: The Key Value of each configuration will be used as the name of the associated output video.
@@ -257,7 +259,7 @@ An Example Scene Segment:
     * `text`: A _required_ string expressing the text associated with this Scene Segment.
     * `parameters`: An _optional_ dictionary of parameters defining how the Scene Segment will be rendered. All keys under `parameters` are also optional.
         * `prompt`: A string specifying a custom prompt for this particular Scene Segment.
-        * `negativePrompt`: A string specifying a prompt of tokens to move away from for generation of this particular Scene Segment.
+        * `negativePrompt`: A string specifying tokens to move away from for generation of this particular Scene Segment.
         * `duration`: An int specifying the amount of time in seconds this Scene Segment should remain on screen.
         * `camera`: _This key can accept multiple values types._
             1. A string like `basicForwardZoom` to reference a Python Defined Camera in the `.../SceneWeaver/cameras` directory.
