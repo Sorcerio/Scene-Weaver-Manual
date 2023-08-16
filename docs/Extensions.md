@@ -5,6 +5,7 @@
   - [Tool Extensions](#tool-extensions)
     - [\_\_init\_\_.py](#__init__py)
     - [extension.py](#extensionpy)
+    - [requirements.txt](#requirementstxt)
     - [Other Files](#other-files)
 
 ---
@@ -28,6 +29,7 @@ extensions/
 ├─ MyExtension/
 │  ├─ __init__.py
 │  ├─ extension.py
+│  ├─ requirements.txt
 ```
 
 ### \_\_init\_\_.py
@@ -40,7 +42,8 @@ Alternatively, you can supply your own to limit specific exports.
 Just be sure to include the `extension.py` file!
 
 ### extension.py
-The `extension.py` file is how the Scene Weaver system knows that your extension is a Tool Extension. In this file, you should introduce a class named uniquely for your Tool Extension comforming to the `ToolExtension` interface.
+The `extension.py` file is how the Scene Weaver system knows that your extension is a Tool Extension.
+In this file, you should introduce a class named uniquely for your Tool Extension comforming to the `ToolExtension` interface.
 
 In the `__init__` function, you should call the `super()` of your custom class and define your extension's `name` and `description` properties.
 
@@ -51,6 +54,14 @@ The delegate functions `registerWithCli(...)` and `startFromCli(...)` define the
 
 * `registerWithCli(...)` is how your Tool Extension registers with the Scene Weaver CLI and is where you can define any command line arguments.
 * `startFromCli(...)` is called by Scene Weaver when your Tool Extension is executed from the CLI and is effectively your `main()` function.
+
+### requirements.txt
+The `requirements.txt` file is optional.
+This file should be a standard Pip requirements `.txt` file that specifies any additional requirements needed by your extension.
+
+The requirements specified here will not be installed automatically and, as such, you should include a notice in your `README.md` file indicating that the user will need to install these additional requirements.
+
+If your extension includes additional requirements that the user does not have in their environment, then Scene Weaver will alert them to this upon any execution.
 
 ### Other Files
 
